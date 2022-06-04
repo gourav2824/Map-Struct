@@ -18,7 +18,6 @@ public class ProductMapperTest {
 
         ProductDTO productDTO = mapper.productToProductDTO(product);
 
-        System.out.println(productDTO);
         assertThat(productDTO.getId()).isEqualTo(product.getId());
         assertThat(productDTO.getName()).isEqualTo(product.getName());
     }
