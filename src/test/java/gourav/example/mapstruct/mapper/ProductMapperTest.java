@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProductMapperTest {
 
     @Test
-    void testProductToProductDTO() {
+    void testProductToProductDtoWithMinimalFields() {
         ProductMapper mapper = Mappers.getMapper(ProductMapper.class);
         Product product = new Product();
-        product.setId(1);
+        product.setId(100);
         product.setName("MacBook Pro");
 
         ProductDTO productDTO = mapper.productToProductDTO(product);

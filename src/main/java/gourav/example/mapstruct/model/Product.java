@@ -13,6 +13,7 @@ public class Product {
     private Integer id;
     private String name;
     private String description;
+    private int productCode;
     private String color;
     private Price price;
     private City city;
