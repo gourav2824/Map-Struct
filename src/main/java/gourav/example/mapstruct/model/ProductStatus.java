@@ -1,7 +1,7 @@
 package gourav.example.mapstruct.model;
 
-public enum Status {
+public enum ProductStatus {
     AVAILABLE,
     OUT_OF_STOCK,
-    UNDEFINED
+    UNKNOWN
 }
