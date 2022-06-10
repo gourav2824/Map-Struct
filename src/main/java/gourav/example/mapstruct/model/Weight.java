@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Weight {
-    private int value;
-    private String unit;
+    private int weightValue;
+    private String weightUnit;
 }
