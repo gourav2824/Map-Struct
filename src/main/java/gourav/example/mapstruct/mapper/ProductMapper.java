@@ -6,7 +6,6 @@ import gourav.example.mapstruct.model.Product;
 import gourav.example.mapstruct.model.ProductDTO;
 import gourav.example.mapstruct.model.ProductStatus;
 import gourav.example.mapstruct.model.Status;
-import gourav.example.mapstruct.model.Type;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -19,14 +18,12 @@ public interface ProductMapper {
     @Mapping(target = ".", source = "weight")
     @Mapping(target = "country", source = "city.country")
     @Mapping(target = "size.dimensions", source = "productDimensions")
+    @Mapping(target = "type.productType", source = "type")
+    @Mapping(target = "productCode", expression = "java(productDTO.getId() + productDTO.getName() + productDTO.getProductCode())")
     ProductDTO productToProductDTO(Product product);
 
     @Mapping(target = "countryCode", ignore = true)
     PriceDTO priceToPriceDTO(Price price);
-
-    @Mapping(target = "code", ignore = true)
-    @Mapping(target = "productType", source = ".")
-    Type typeToProductType(String type);
 
     @ValueMapping(source = "UNDEFINED", target = "UNKNOWN")
     ProductStatus statusToProductStatus(Status status);
