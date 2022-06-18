@@ -21,9 +21,7 @@ public class ProductMapperTest {
 
     @Test
     void testProductToProductDtoWithMinimalFields() {
-        Product product = new Product();
-        product.setId(100);
-        product.setName("MacBook Pro");
+        Product product = getProductWithMinimalFields();
 
         ProductDTO productDTO = mapper.productToProductDTO(product);
 
@@ -33,9 +31,7 @@ public class ProductMapperTest {
 
     @Test
     void shouldMapPriceAndCityToPriceDTO() {
-        Product product = new Product();
-        product.setId(111);
-        product.setName("Rolex Watch");
+        Product product = getProductWithMinimalFields();
         product.setPrice(getPrice());
         product.setCity(getCity());
 
@@ -44,6 +40,24 @@ public class ProductMapperTest {
         assertThat(productDTO.getPrice().getAmount()).isEqualTo(product.getPrice().getAmount());
         assertThat(productDTO.getPrice().getCurrency()).isEqualTo(product.getPrice().getCurrency());
         assertThat(productDTO.getPrice().getCountryCode()).isEqualTo(product.getCity().getCountryCode());
+    }
+
+    @Test
+    void shouldMapProductCode() {
+        Product product = getProductWithMinimalFields();
+        product.setProductCode(234);
+
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        String expectedProductCode = "100MacBook_Pro234";
+        assertThat(productDTO.getProductCode()).isEqualTo(expectedProductCode);
+    }
+
+    private Product getProductWithMinimalFields() {
+        Product product = new Product();
+        product.setId(100);
+        product.setName("MacBook_Pro");
+        return product;
     }
 
     private Price getPrice() {
