@@ -1,5 +1,6 @@
 package gourav.example.mapstruct.mapper;
 
+import gourav.example.mapstruct.model.City;
 import gourav.example.mapstruct.model.Price;
 import gourav.example.mapstruct.model.PriceDTO;
 import gourav.example.mapstruct.model.Product;
@@ -19,11 +20,11 @@ public interface ProductMapper {
     @Mapping(target = "country", source = "city.country")
     @Mapping(target = "size.dimensions", source = "productDimensions")
     @Mapping(target = "type.productType", source = "type")
-    @Mapping(target = "productCode", expression = "java(productDTO.getId() + productDTO.getName() + productDTO.getProductCode())")
+    @Mapping(target = "productCode", expression = "java(product.getId() + product.getName() + product.getProductCode())")
+    @Mapping(target = "price", expression = "java(mapPriceDtoFromPriceAndCity(product.getPrice(), product.getCity()))")
     ProductDTO productToProductDTO(Product product);
 
-    @Mapping(target = "countryCode", ignore = true)
-    PriceDTO priceToPriceDTO(Price price);
+    PriceDTO mapPriceDtoFromPriceAndCity(Price price, City city);
 
     @ValueMapping(source = "UNDEFINED", target = "UNKNOWN")
     ProductStatus statusToProductStatus(Status status);

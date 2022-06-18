@@ -18,7 +18,7 @@ public class ProductDTO {
     private String color;
     private PriceDTO price;
     private int weightValue;
-    private int weightUnit;
+    private String weightUnit;
     private Size size;
     private String country;
     private Type type;
