@@ -1,6 +1,7 @@
 package gourav.example.mapstruct.mapper;
 
 import gourav.example.mapstruct.model.City;
+import gourav.example.mapstruct.model.Dimension;
 import gourav.example.mapstruct.model.Price;
 import gourav.example.mapstruct.model.PriceDTO;
 import gourav.example.mapstruct.model.Product;
@@ -11,8 +12,12 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.ValueMapping;
+
+import java.util.List;
+import java.util.Objects;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface ProductMapper {
@@ -23,6 +28,7 @@ public interface ProductMapper {
     @Mapping(target = "size.dimensions", source = "productDimensions")
     @Mapping(target = "type.productType", source = "type")
     @Mapping(target = "productCode", expression = "java(product.getId() + product.getName() + product.getProductCode())")
+    @Mapping(target = "dimensionsCount", source = "productDimensions", qualifiedByName = "countDimensions")
     @Mapping(target = "price", ignore = true)
     ProductDTO productToProductDTO(Product product);
 
@@ -30,6 +36,11 @@ public interface ProductMapper {
     ProductStatus statusToProductStatus(Status status);
 
     PriceDTO mapPriceDtoFromPriceAndCity(Price price, City city);
+
+    @Named("countDimensions")
+    default int getDimensionsCount(List<Dimension> productDimensions) {
+        return Objects.nonNull(productDimensions) ? productDimensions.size() : 0;
+    }
 
     @AfterMapping
     default void mapPriceDTO(@MappingTarget ProductDTO productDTO, Product product) {

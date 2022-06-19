@@ -1,12 +1,15 @@
 package gourav.example.mapstruct.mapper;
 
 import gourav.example.mapstruct.model.City;
+import gourav.example.mapstruct.model.Dimension;
 import gourav.example.mapstruct.model.Price;
 import gourav.example.mapstruct.model.Product;
 import gourav.example.mapstruct.model.ProductDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,6 +54,18 @@ public class ProductMapperTest {
 
         String expectedProductCode = "100MacBook_Pro234";
         assertThat(productDTO.getProductCode()).isEqualTo(expectedProductCode);
+    }
+
+    @Test
+    void shouldMapDimensionsCount() {
+        Product product = getProductWithMinimalFields();
+        Dimension dim1 = new Dimension(1, "Width", 1920);
+        Dimension dim2 = new Dimension(2, "Height", 1080);
+        product.setProductDimensions(Arrays.asList(dim1, dim2));
+
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        assertThat(productDTO.getDimensionsCount()).isEqualTo(product.getProductDimensions().size());
     }
 
     private Product getProductWithMinimalFields() {

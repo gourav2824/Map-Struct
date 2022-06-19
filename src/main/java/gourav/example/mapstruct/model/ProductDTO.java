@@ -19,6 +19,7 @@ public class ProductDTO {
     private PriceDTO price;
     private int weightValue;
     private String weightUnit;
+    private int dimensionsCount;
     private Size size;
     private String country;
     private Type type;
