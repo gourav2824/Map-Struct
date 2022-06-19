@@ -62,7 +62,7 @@ public class ProductMapperTest {
 
     private Price getPrice() {
         Price price = new Price();
-        price.setAmount(1000);
+        price.setAmount(1_50_000);
         price.setCurrency("INR");
         return price;
     }
