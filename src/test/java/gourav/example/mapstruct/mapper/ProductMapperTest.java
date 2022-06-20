@@ -5,6 +5,7 @@ import gourav.example.mapstruct.model.Dimension;
 import gourav.example.mapstruct.model.Price;
 import gourav.example.mapstruct.model.Product;
 import gourav.example.mapstruct.model.ProductDTO;
+import gourav.example.mapstruct.model.ProductType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
@@ -66,6 +67,28 @@ public class ProductMapperTest {
         ProductDTO productDTO = mapper.productToProductDTO(product);
 
         assertThat(productDTO.getDimensionsCount()).isEqualTo(product.getProductDimensions().size());
+    }
+
+    @Test
+    void shouldBeAbleToMapOtherProductType() {
+        Product product = getProductWithMinimalFields();
+        product.setType("Equipment");
+
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        assertThat(productDTO.getType().getProductType()).isEqualTo(ProductType.Other);
+        assertThat(productDTO.getType().getCode()).isNull();
+    }
+
+    @Test
+    void shouldBeAbleToMapHealthCareProductType() {
+        Product product = getProductWithMinimalFields();
+        product.setType("Health Care");
+
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        assertThat(productDTO.getType().getProductType()).isEqualTo(ProductType.Health_Care);
+        assertThat(productDTO.getType().getCode()).isNull();
     }
 
     private Product getProductWithMinimalFields() {

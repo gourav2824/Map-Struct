@@ -7,10 +7,12 @@ import gourav.example.mapstruct.model.PriceDTO;
 import gourav.example.mapstruct.model.Product;
 import gourav.example.mapstruct.model.ProductDTO;
 import gourav.example.mapstruct.model.ProductStatus;
+import gourav.example.mapstruct.model.ProductType;
 import gourav.example.mapstruct.model.Status;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
@@ -31,6 +33,10 @@ public interface ProductMapper {
     @Mapping(target = "dimensionsCount", source = "productDimensions", qualifiedByName = "countDimensions")
     @Mapping(target = "price", ignore = true)
     ProductDTO productToProductDTO(Product product);
+
+    @ValueMapping(source = "Health Care", target = "Health_Care")
+    @ValueMapping(source = MappingConstants.ANY_REMAINING, target = "Other")
+    ProductType typeToProductType(String type);
 
     @ValueMapping(source = "UNDEFINED", target = "UNKNOWN")
     ProductStatus statusToProductStatus(Status status);
