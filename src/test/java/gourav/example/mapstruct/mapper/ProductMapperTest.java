@@ -1,5 +1,6 @@
 package gourav.example.mapstruct.mapper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gourav.example.mapstruct.model.City;
 import gourav.example.mapstruct.model.Dimension;
 import gourav.example.mapstruct.model.Price;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -99,6 +102,19 @@ public class ProductMapperTest {
 
         assertThat(productDTO.getId()).isNotNull().isEqualTo(0);
         assertThat(productDTO.getName()).isNotNull().isEqualTo("Undefined");
+    }
+
+    @Test
+    void shouldMapProductToProductDTO() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File productFile = new File("src/test/resources/data/product.json");
+        Product product = objectMapper.readValue(productFile, Product.class);
+
+        ProductDTO actualProductDTO = mapper.productToProductDTO(product);
+
+        File productDtoFile = new File("src/test/resources/data/product-dto.json");
+        ProductDTO expectedProductDTO = objectMapper.readValue(productDtoFile, ProductDTO.class);
+        assertThat(actualProductDTO).isEqualTo(expectedProductDTO);
     }
 
     private Product getProductWithMinimalFields() {

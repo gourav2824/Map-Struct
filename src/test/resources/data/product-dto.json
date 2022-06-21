@@ -1,0 +1,39 @@
+{
+  "id": 100,
+  "name": "myPhone 13 Pro Max",
+  "description": "This is gonna be the best myPhone ever.",
+  "productCode": "100myPhone 13 Pro Max3344",
+  "color": "Gold",
+  "price": {
+    "amount": 75000,
+    "currency": "INR",
+    "countryCode": "IND"
+  },
+  "weightValue": 200,
+  "weightUnit": "g",
+  "dimensionsCount": 2,
+  "size": {
+    "dimensions": [
+      {
+        "id": 1,
+        "name": "Width",
+        "value": 1920
+      },
+      {
+        "id": 2,
+        "name": "Height",
+        "value": 1080
+      }
+    ]
+  },
+  "country": "India",
+  "type": {
+    "productType": "Electronics",
+    "code": null
+  },
+  "material": [
+    "Glass",
+    "Steel"
+  ],
+  "status": "AVAILABLE"
+}
