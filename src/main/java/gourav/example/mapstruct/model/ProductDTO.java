@@ -14,6 +14,7 @@ public class ProductDTO {
     @NonNull
     private String name;
     private String description;
+    private String entity;
     private String productCode;
     private String color;
     private PriceDTO price;

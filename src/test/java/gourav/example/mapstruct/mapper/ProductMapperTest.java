@@ -105,6 +105,13 @@ public class ProductMapperTest {
     }
 
     @Test
+    void shouldBeAbleToMapConstantValueForEntity() {
+        Product product = getProductWithMinimalFields();
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+        assertThat(productDTO.getEntity()).isEqualTo("Product");
+    }
+
+    @Test
     void shouldMapProductToProductDTO() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File productFile = new File("src/test/resources/data/product.json");

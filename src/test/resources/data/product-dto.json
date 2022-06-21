@@ -2,6 +2,7 @@
   "id": 100,
   "name": "myPhone 13 Pro Max",
   "description": "This is gonna be the best myPhone ever.",
+  "entity": "Product",
   "productCode": "100myPhone 13 Pro Max3344",
   "color": "Gold",
   "price": {

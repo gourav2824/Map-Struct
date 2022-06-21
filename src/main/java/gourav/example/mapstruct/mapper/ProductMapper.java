@@ -26,6 +26,7 @@ public interface ProductMapper {
 
     @Mapping(target = "id", source = "id", defaultValue = "0")
     @Mapping(target = "name", source = "name", defaultValue = "Undefined")
+    @Mapping(target = "entity", constant = "Product")
     @Mapping(target = "color", source = "colour")
     @Mapping(target = ".", source = "weight")
     @Mapping(target = "country", source = "city.country")
