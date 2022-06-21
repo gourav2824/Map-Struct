@@ -91,6 +91,16 @@ public class ProductMapperTest {
         assertThat(productDTO.getType().getCode()).isNull();
     }
 
+    @Test
+    void shouldMapDefaultIdAndNameIfIdOrNameAreNull() {
+        Product product = new Product();
+
+        ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        assertThat(productDTO.getId()).isNotNull().isEqualTo(0);
+        assertThat(productDTO.getName()).isNotNull().isEqualTo("Undefined");
+    }
+
     private Product getProductWithMinimalFields() {
         Product product = new Product();
         product.setId(100);

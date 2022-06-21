@@ -24,6 +24,8 @@ import java.util.Objects;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface ProductMapper {
 
+    @Mapping(target = "id", source = "id", defaultValue = "0")
+    @Mapping(target = "name", source = "name", defaultValue = "Undefined")
     @Mapping(target = "color", source = "colour")
     @Mapping(target = ".", source = "weight")
     @Mapping(target = "country", source = "city.country")
