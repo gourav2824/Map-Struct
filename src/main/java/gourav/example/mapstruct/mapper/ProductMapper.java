@@ -52,6 +52,12 @@ public interface ProductMapper {
     }
 
     @AfterMapping
+    default void removeWhitespacesFromProductCode(@MappingTarget ProductDTO productDTO) {
+        String productCode = productDTO.getProductCode().replaceAll("\\s", "");
+        productDTO.setProductCode(productCode);
+    }
+
+    @AfterMapping
     default void mapPriceDTO(@MappingTarget ProductDTO productDTO, Product product) {
         productDTO.setPrice(mapPriceDtoFromPriceAndCity(product.getPrice(), product.getCity()));
     }

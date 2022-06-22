@@ -56,7 +56,7 @@ public class ProductMapperTest {
 
         ProductDTO productDTO = mapper.productToProductDTO(product);
 
-        String expectedProductCode = "100MacBook_Pro234";
+        String expectedProductCode = "100MacBookPro234";
         assertThat(productDTO.getProductCode()).isEqualTo(expectedProductCode);
     }
 
@@ -127,7 +127,7 @@ public class ProductMapperTest {
     private Product getProductWithMinimalFields() {
         Product product = new Product();
         product.setId(100);
-        product.setName("MacBook_Pro");
+        product.setName("MacBook Pro");
         return product;
     }
 

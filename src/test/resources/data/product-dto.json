@@ -3,7 +3,7 @@
   "name": "myPhone 13 Pro Max",
   "description": "This is gonna be the best myPhone ever.",
   "entity": "Product",
-  "productCode": "100myPhone 13 Pro Max3344",
+  "productCode": "100myPhone13ProMax3344",
   "color": "Gold",
   "price": {
     "amount": 75000,
