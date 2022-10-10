@@ -15,6 +15,8 @@ public class Product {
     private String colour;
     private Price price;
     private Weight weight;
+    private String labelName;
+    private String labelType;
     private List<Dimension> productDimensions;
     private City city;
     private String type;

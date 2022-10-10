@@ -29,6 +29,7 @@ public interface ProductMapper {
     @Mapping(target = "entity", constant = "Product")
     @Mapping(target = "color", source = "colour")
     @Mapping(target = ".", source = "weight")
+    @Mapping(target = "label", source = ".")
     @Mapping(target = "country", source = "city.country")
     @Mapping(target = "size.dimensions", source = "productDimensions")
     @Mapping(target = "type.productType", source = "type")

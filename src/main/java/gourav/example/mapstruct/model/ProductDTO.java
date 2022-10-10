@@ -20,6 +20,7 @@ public class ProductDTO {
     private PriceDTO price;
     private int weightValue;
     private String weightUnit;
+    private Label label;
     private int dimensionsCount;
     private Size size;
     private String country;
