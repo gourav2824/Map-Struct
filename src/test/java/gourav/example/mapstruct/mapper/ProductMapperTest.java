@@ -112,6 +112,18 @@ public class ProductMapperTest {
     }
 
     @Test
+    void shouldBeAbleToMapLabelNameAndType() {
+        final Product product = getProductWithMinimalFields();
+        product.setLabelName("Smartphone");
+        product.setLabelType("Mobiles");
+
+        final ProductDTO productDTO = mapper.productToProductDTO(product);
+
+        assertThat(productDTO.getLabel().getLabelName()).isEqualTo(product.getLabelName());
+        assertThat(productDTO.getLabel().getLabelType()).isEqualTo(product.getLabelType());
+    }
+
+    @Test
     void shouldMapProductToProductDTO() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File productFile = new File("src/test/resources/data/product.json");

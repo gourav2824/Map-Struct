@@ -12,6 +12,8 @@
     "weightValue": 200,
     "weightUnit": "g"
   },
+  "labelName": "Smartphone",
+  "labelType": "Mobiles",
   "productDimensions": [
     {
       "id": 1,
