@@ -10,6 +10,7 @@ import gourav.example.mapstruct.model.ProductStatus;
 import gourav.example.mapstruct.model.ProductType;
 import gourav.example.mapstruct.model.Status;
 import org.mapstruct.AfterMapping;
+import org.mapstruct.BeforeMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -18,6 +19,7 @@ import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.ValueMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +48,13 @@ public interface ProductMapper {
     ProductStatus statusToProductStatus(Status status);
 
     PriceDTO mapPriceDtoFromPriceAndCity(Price price, City city);
+
+    @BeforeMapping
+    default void setMaterialListToEmptyListIfNull(@MappingTarget ProductDTO productDTO, Product product) {
+        if (product.getMaterial() == null) {
+            productDTO.setMaterial(new ArrayList<>());
+        }
+    }
 
     @Named("countDimensions")
     default int getDimensionsCount(List<Dimension> productDimensions) {
