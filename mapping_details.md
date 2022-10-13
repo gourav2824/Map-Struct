@@ -49,21 +49,28 @@
     * Source = `Weight.weightUnit`
 
 
-10. `int dimensionsCount`
+10. `Label label`
+    1. `String labelName`
+       * Source = `labelName`
+    2. `String labelType`
+       * Source = `labelType`
+
+
+11. `int dimensionsCount`
     * Source = `productDimensions`
     * Value = Size of the `productDimensions` list
 
 
-11. `Size size`
+12. `Size size`
     1. `List<Dimension> dimensions`
         * Source = `productDimensions`
 
 
-12. `String country`
+13. `String country`
     * Source = `City.country`
 
 
-13. `Type type`
+14. `Type type`
     1. `ProductType productType` (Enum)
         * Source = `String type`
         * Enum mapping details (from `String` type to `Enum` productType)
@@ -78,11 +85,11 @@
         * Source = No mapping
 
 
-14. `List<String> material`
+15. `List<String> material`
     * Source = `material`
 
 
-15. `ProductStatus status` (Enum)
+16. `ProductStatus status` (Enum)
     * Source = `Status status` (Enum)
     * Enum mapping details (from `Status` status to `ProductStatus` status)
         1. *AVAILABLE         ->        AVAILABLE*
