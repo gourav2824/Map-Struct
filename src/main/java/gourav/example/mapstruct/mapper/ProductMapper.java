@@ -37,7 +37,7 @@ public interface ProductMapper {
     @Mapping(target = "type.productType", source = "type")
     @Mapping(target = "productCode", expression = "java(product.getId() + product.getName() + product.getProductCode())")
     @Mapping(target = "dimensionsCount", source = "productDimensions", qualifiedByName = "countDimensions")
-    @Mapping(target = "price", ignore = true)
+    @Mapping(target = "price", source = ".", qualifiedByName = "mapPriceDto")
     ProductDTO productToProductDTO(Product product);
 
     @ValueMapping(source = "Health Care", target = "Health_Care")
@@ -61,14 +61,14 @@ public interface ProductMapper {
         return Objects.nonNull(productDimensions) ? productDimensions.size() : 0;
     }
 
+    @Named("mapPriceDto")
+    default PriceDTO createPriceDtoFromProduct(Product product) {
+        return mapPriceDtoFromPriceAndCity(product.getPrice(), product.getCity());
+    }
+
     @AfterMapping
     default void removeWhitespacesFromProductCode(@MappingTarget ProductDTO productDTO) {
         String productCode = productDTO.getProductCode().replaceAll("\\s", "");
         productDTO.setProductCode(productCode);
-    }
-
-    @AfterMapping
-    default void mapPriceDTO(@MappingTarget ProductDTO productDTO, Product product) {
-        productDTO.setPrice(mapPriceDtoFromPriceAndCity(product.getPrice(), product.getCity()));
     }
 }
